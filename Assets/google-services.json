@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146488088296",
+    "project_id": "curioquest-a3bfb",
+    "storage_bucket": "curioquest-a3bfb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146488088296:android:2bad2baa59bd0e46355b5d",
+        "android_client_info": {
+          "package_name": "com.curioquest.jjas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMvmuxzBVYMD6n4e-RP0btHPrelwCi6wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
