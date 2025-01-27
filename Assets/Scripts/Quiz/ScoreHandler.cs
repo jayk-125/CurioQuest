@@ -45,4 +45,9 @@ public class ScoreHandler : MonoBehaviour
         scoreText.text = "Current score: " + score.ToString();
     }
 
+    // Begin the quiz
+    void BeginQuiz()
+    {
+
+    }
 }
