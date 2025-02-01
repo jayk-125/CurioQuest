@@ -8,37 +8,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CalibrateQuiz : MonoBehaviour
 {
-    // Reference the start pos object here
+    // Reference to ScoreHandler script
     [SerializeField]
-    private GameObject startPointObj;
+    private ScoreHandler scoreHandler;
 
     // Reference different pages
     public GameObject startPage;
     public GameObject calibratePage;
     public GameObject quizPage;
+    public GameObject gameOverPage;
 
-    // List containing spawned quiz board
-    private List<GameObject> spawnedPoint = new List<GameObject>();
-    // List containing spawned quiz objects
-    private List<GameObject> quizObjects = new List<GameObject>();
-
+    // Spawning of Quiz Board
+    // Reference the start pos object here
+    [SerializeField]
+    private GameObject startPointObj;
     // Boolean to handle whether player can set start transform
     private bool setStartPoint;
+    // List containing spawned quiz board
+    private List<GameObject> spawnedPoint = new List<GameObject>();
+
+
+    // Overall quiz timer
     // Boolean to start quiz timer
     private bool canTimerStart;
-    // Boolean to allow question to be set
-    private bool setTheQuestion;
-
-    // Curent time float
+    // Current time float
     private float currentTime;
     // Timer float
     private float quizTimer = 15f;
+    
     // Question number count
     private int questionNum;
+    // Current selected option
+    private string chosenOption;
+    // Current button settings
+    private string buttonSettings;
 
     // Reference to QuizList script
     public QuizList quizList;
@@ -55,11 +63,14 @@ public class CalibrateQuiz : MonoBehaviour
     string randomQcorAns;
     // Question explanation
     string randomQExplanation;
-    // Question options list
+    // List containing all CURRENTLY spawn objects
     List<GameObject> optionObjects = new List<GameObject>();
     // Question answer object
     GameObject randomQAnsObj;
+    // List containing all TO BE SPAWNED quiz objects
+    private List<GameObject> quizObjects = new List<GameObject>();
 
+    // UI objects
     // Reference to question text
     [SerializeField]
     private TextMeshProUGUI questionText;
@@ -69,6 +80,9 @@ public class CalibrateQuiz : MonoBehaviour
     // Reference to button text
     [SerializeField]
     private TextMeshProUGUI buttonText;
+    // Reference to button object
+    [SerializeField]
+    private Button buttonObj;
     // Reference to quiz timer text
     [SerializeField]
     private TextMeshProUGUI quizTimerText;
@@ -76,22 +90,19 @@ public class CalibrateQuiz : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI quizScoreText;
 
+    // Game Over page
+    // Reference to current score text
+    [SerializeField]
+    private TextMeshProUGUI currentScoreText;
+    // Reference to highscore text
+    [SerializeField]
+    private TextMeshProUGUI highscoreText; // Currently just a placeholder
+
     // Start is called before the first frame update
     void Awake()
     {
-        // Disallow players from setting start pos
-        setStartPoint = false;
-        // Disallow question setting
-        setTheQuestion = false;
-
-        // Show start page
-        startPage.SetActive(true);
-        // Hide other pages
-        calibratePage.SetActive(false);
-        quizPage.SetActive(false);
-
-        // Set the current time as the same as the quiz timer
-        currentTime = quizTimer;
+        // Reset the quiz
+        Restart();
     }
 
     // When the game is started
@@ -109,6 +120,7 @@ public class CalibrateQuiz : MonoBehaviour
         // Hide other pages
         startPage.SetActive(false);
         quizPage.SetActive(false);
+        gameOverPage.SetActive(false);
 
         // Allow player to set start point
         setStartPoint = true;
@@ -153,32 +165,16 @@ public class CalibrateQuiz : MonoBehaviour
             // If time is up
             if (currentTime <= 0f)
             {
+                // Stop timer
                 canTimerStart = false;
                 Debug.Log("Quiz has been ended");
-                //EndQuiz();
+                // End the quiz
+                EndQuiz();
             }
-        }
-
-        // Setting the quiz questions
-        // If can set the question
-        if (setTheQuestion)
-        {
-            // Question number increment
-            questionNum++;
-            // Show question number
-            questionNumText.text = "Question " + questionNum.ToString() + ": ";
-            Debug.Log("Question " + questionNum);
-                
-
-            Debug.Log("Setting a question");
-            // Set the question
-            SetQuestion();
-
-            // Disallow question setting
-            setTheQuestion = false;
         }
     }
 
+    // Switch to the quiz page
     public void SwitchToQuiz()
     {
         // Show quiz page
@@ -186,6 +182,7 @@ public class CalibrateQuiz : MonoBehaviour
         // Hide other pages
         startPage.SetActive(false);
         calibratePage.SetActive(false);
+        gameOverPage.SetActive(false);
 
         Debug.Log("Starting quiz!");
         // Allow quiz to start
@@ -198,18 +195,31 @@ public class CalibrateQuiz : MonoBehaviour
         // Allow timer to start
         canTimerStart = true;
 
+        // Reset player score
+        scoreHandler.ResetScore();
+
         // Prepare the question
         // Number starts at 0
         questionNum = 0;
 
         Debug.Log("Questions starting to be set");
-        // While the timer is active
-        setTheQuestion = true;
+        
+        // Set a question
+        SetQuestion();
     }
 
     // Prepare the quiz question
     public void SetQuestion()
     {
+        // Question number increment
+        questionNum++;
+        // Show question number
+        questionNumText.text = "Question " + questionNum.ToString() + ": ";
+        Debug.Log("Question " + questionNum);
+
+        // Button setting is "submit"
+        buttonSettings = "submit";
+
         // Retrieve a question
         GetQuestion();
 
@@ -224,6 +234,8 @@ public class CalibrateQuiz : MonoBehaviour
         GameObject ansObj = Instantiate(randomQAnsObj,spawnPoint,Quaternion.identity);
         // Add ans object to quiz objects list
         quizObjects.Add(ansObj);
+
+        int corAns = int.Parse(randomQcorAns);
 
         // Handles all the objects being spawned
         for (int i = 0; i < optionObjects.Count; i++)
@@ -266,10 +278,8 @@ public class CalibrateQuiz : MonoBehaviour
         var qList = quizList.questionList;
         // Get a random question number from quiz list
         int randomQNum = Random.Range(0, qList.Length);
-        Debug.Log(qList[randomQNum].Split('~')[0]);
         // Split the question
         var randomQList = qList[randomQNum].Split('~');
-        Debug.Log(randomQList);
         // Retrieve the ID from Question
         string randomQID = randomQList[1].ToString();
         Debug.Log("ID obtained!");
@@ -354,11 +364,145 @@ public class CalibrateQuiz : MonoBehaviour
         }
     }
 
+    // SocketSending functions:
+    // Allow button to submit
+    public void AllowSubmit()
+    {
+        buttonObj.interactable = true;
+    }
+    // Disallow button to submit
+    public void DisallowSubmit()
+    {
+        buttonObj.interactable = false;
+    }
+    // Current receieved option
+    public void PublishCurrentOp(string option)
+    {
+        chosenOption = option;
+    }
+    // When button pressed
+    public void ButtonPressed()
+    {
+        // If button is in "Submit" mode
+        if (buttonSettings == "submit")
+        {
+            SubmittedAnswer();
+        }
+        // Else if button is in "Next question" mode
+        else
+        {
+            NextQuestion();
+        }
 
-    /*
+    }
+
+    // When submitted
+    void SubmittedAnswer()
+    {
+        // Initialize string variable
+        string response;
+        // If chosen answer is correct
+        if (chosenOption == randomQcorAns)
+        {
+            // Actions for "Correct" here
+            Debug.Log("Yippee, correct ans!");
+            response = "CORRECT!\n";
+            // Increase the score
+            scoreHandler.OnCorrect();
+        }
+        // Else if answer is wrong
+        else
+        {
+            // Actions for "Incorrect" here
+            Debug.Log("U suck bruh");
+            response = "INCORRECT...\n";
+        }
+        // Show Response + Explanation
+        questionText.text = response + randomQExplanation;
+
+        ClearQuizObj();
+
+        // Change button text
+        buttonText.text = "Next";
+        // Change button settings
+        buttonSettings = "go next";
+        // Enable button
+        buttonObj.interactable = true;
+    }
+
+    // Going to the next question
+    void NextQuestion()
+    {
+        // Set the next question
+        SetQuestion();
+        // Disable the button
+        buttonObj.interactable = false;
+    }
+
+    // End the quiz
     public void EndQuiz()
     {
+        // Stop timer
+        canTimerStart = false;
         
+        // Show game over page
+        gameOverPage.SetActive(true);
+        // Hide other pages
+        startPage.SetActive(false);
+        calibratePage.SetActive(false);
+        quizPage.SetActive(false);
+
+        Debug.Log("clearing quiz board");
+        // Remove all quiz interactable objects
+        ClearQuizObj();
+        // Get the saved quiz board object
+        foreach (GameObject quizBrd in spawnedPoint)
+        {
+            // Destroy quiz board object
+            Destroy(quizBrd);
+        }
+        // Clear the list
+        spawnedPoint.Clear();
+        Debug.Log("Cleared!");
+
+        // Set the current score text as current score
+        currentScoreText.text = "Current score:\n" + scoreHandler.score.ToString();
     }
-    */
+
+    // Restart button
+    public void Restart()
+    {
+        // Disallow players from setting start pos
+        setStartPoint = false;
+
+        // Show start page
+        startPage.SetActive(true);
+        // Hide other pages
+        calibratePage.SetActive(false);
+        quizPage.SetActive(false);
+        gameOverPage.SetActive(false);
+
+        // Set the current time as the same as the quiz timer
+        currentTime = quizTimer;
+    }
+
+    // Remove all quiz interactable objects
+    void ClearQuizObj()
+    {
+        // Loop each stored object type
+        foreach (GameObject quizObj in quizObjects)
+        {
+            // Destroy this object
+            Destroy(quizObj);
+        }
+        // Clear the quiz list now that all spawned objects are removed
+        quizObjects.Clear();
+        // Clear the current spawned quiz interactable objects list
+        optionObjects.Clear();
+
+        // Destroy the randomQAnsObj
+        Destroy(randomQAnsObj);
+
+        Debug.Log("All quiz objects cleared!");
+    }
 }
