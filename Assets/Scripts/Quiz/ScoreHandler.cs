@@ -14,15 +14,13 @@ public class ScoreHandler : MonoBehaviour
     // Reference text object
     public TextMeshProUGUI scoreText;
     // Reference score integer
-    private int score;
+    public int score;
 
     // Start is called before the first frame update
     void Start()
     {
         // Reset the score
         ResetScore();
-        // Copy score to text
-        CopyScoreToText();
     }
 
     // Function for reseting score
@@ -30,6 +28,8 @@ public class ScoreHandler : MonoBehaviour
     {
         // Set score to 0
         score = 0;
+        // Copy socre over to text
+        CopyScoreToText();
     }
 
     // When player gets a question correct
@@ -37,17 +37,13 @@ public class ScoreHandler : MonoBehaviour
     {
         // Increase score by 1
         score += 1;
+        // Copy socre over to text
+        CopyScoreToText();
     }
 
     // When called, copy the current score to the score text
     void CopyScoreToText()
     {
-        scoreText.text = "Current score: " + score.ToString();
-    }
-
-    // Begin the quiz
-    void BeginQuiz()
-    {
-
+        scoreText.text = "Score: " + score.ToString();
     }
 }

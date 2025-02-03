@@ -1,3 +1,8 @@
+/* Author: Loh Shau Ern Shaun
+ * Date: 27/01/2025
+ * Desc:
+ * - Holds all the quiz related objects and texts
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
