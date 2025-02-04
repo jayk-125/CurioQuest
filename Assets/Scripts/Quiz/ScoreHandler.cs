@@ -3,6 +3,7 @@
  * Desc:
  * - Reset quiz when needed (EG: Start)
  * - Counts player current score 
+ * - Updates and displays player current score
  */
 using System.Collections;
 using System.Collections.Generic;

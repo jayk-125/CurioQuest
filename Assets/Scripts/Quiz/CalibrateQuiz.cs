@@ -4,6 +4,17 @@
  * - Handles quiz UI pages
  * - When starting quiz, player can select location for interactive quiz objects to spawn
  * - After selecting spawn location, go to Quiz
+ * 
+ * - When quiz starts, timer begins
+ * - End of timer stops quiz. Pressing "End Quiz" also stops quiz
+ * - When quiz is started, a question is called
+ * - Question will have a ID assigned to it, and takes all necessary text and objects with the same ID
+ * - When answer object is dragged to an option, it returns the answer to be checked. If answer is correct, add to score
+ * - After checking, show an explanation to question and clear the quiz board, then set next question
+ * 
+ * - At the end of the quiz, go to "Game Over page"
+ * - Displays current score and highscore
+ * - Allows restart of quiz
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -39,7 +50,7 @@ public class CalibrateQuiz : MonoBehaviour
     // Current time float
     private float currentTime;
     // Timer float
-    private float quizTimer = 15f;
+    public float quizTimer = 15f;
     
     // Question number count
     private int questionNum;
@@ -328,21 +339,26 @@ public class CalibrateQuiz : MonoBehaviour
         var countOps = 0;
         for (int i = 0; i < opsList.Length; i++)
         {
-            // Compare game object tag to current question ID
+            // Compare game object ID to current question ID
             var checkObj = opsList[i];
-            if (checkObj.tag == randomQID)
+            // Check each ID in game object ID list
+            foreach (string id in checkObj.GetComponent<TagHolder>().ID_list)
             {
-                // Retrieve the OPTIONS OBJECTS
-                optionObjects.Add(checkObj);
-
-                // Increment count
-                countOps++;
-                // If all 3 option objects are received
-                if (countOps == 3)
+                // If an ID matches
+                if (id == randomQID)
                 {
-                    Debug.Log("All options obtained!");
-                    // After finding, end loop
-                    break;
+                    // Retrieve the OPTIONS OBJECTS
+                    optionObjects.Add(checkObj);
+
+                    // Increment count
+                    countOps++;
+                    // If all 3 option objects are received
+                    if (countOps == 3)
+                    {
+                        Debug.Log("All options obtained!");
+                        // After finding, end loop
+                        break;
+                    }
                 }
             }
         }
@@ -353,13 +369,16 @@ public class CalibrateQuiz : MonoBehaviour
         {
             // Compare game object tag to current question ID
             var checkObj = ansList[i];
-            if (checkObj.tag == randomQID)
+            foreach (string id in checkObj.GetComponent<TagHolder>().ID_list)
             {
-                // Retrieve the ANSWER OBJECT
-                randomQAnsObj = checkObj;
-                Debug.Log("Answer object obtained!");
-                // After finding, end loop
-                break;
+                if (id == randomQID)
+                {
+                    // Retrieve the ANSWER OBJECT
+                    randomQAnsObj = checkObj;
+                    Debug.Log("Answer object obtained!");
+                    // After finding, end loop
+                    break;
+                }
             }
         }
     }

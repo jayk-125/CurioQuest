@@ -1,8 +1,9 @@
 /* Author: Loh Shau Ern Shaun
  * Date: 28/01/2025
  * Desc:
- * - 
- * - 
+ * - When socket is connected, allow answer checking
+ * - If no socket connection, disallow answer checking
+ * - Send current selected socket option when called
  */
 using System.Collections;
 using System.Collections.Generic;

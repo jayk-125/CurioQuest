@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8622916959626470586}
   - component: {fileID: 4613171648349819245}
   - component: {fileID: 777572238280263619}
+  - component: {fileID: 4180354679984398401}
   m_Layer: 0
   m_Name: TestAnswer
   m_TagString: Test1
@@ -281,3 +282,19 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &4180354679984398401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407818778945672762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee3e7315b09f4e4083c65cbefcc99e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: TestAnswer
+  ID_list:
+  - Test1
+  - Test2

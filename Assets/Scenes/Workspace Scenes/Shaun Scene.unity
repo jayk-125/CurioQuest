@@ -4333,6 +4333,7 @@ MonoBehaviour:
   gameOverPage: {fileID: 498677739}
   startPointObj: {fileID: 8934021874525494700, guid: 5625d592e4576524bbc6c55d5e2290bf,
     type: 3}
+  quizTimer: 20
   quizList: {fileID: 1599897352}
   mainCamera: {fileID: 1741952105}
   questionText: {fileID: 1562115800}
@@ -9170,12 +9171,8 @@ MonoBehaviour:
   - {fileID: 7872609090535916945, guid: 468decc9a0b35f541aca039cc9a8cf54, type: 3}
   - {fileID: 1671517289519893158, guid: 5e206b2b47bd3184584f2abbce713896, type: 3}
   - {fileID: 819766771025329688, guid: 1e29bce789905164ea4c7e48cb1188ea, type: 3}
-  - {fileID: 7872609090535916945, guid: b9181ea5b90065640a7c8e6c0242028e, type: 3}
-  - {fileID: 1671517289519893158, guid: a8aa1cf42c022054782cf36a5828be96, type: 3}
-  - {fileID: 819766771025329688, guid: 7306badd9ca05ff46a6b2d83ab6f13b1, type: 3}
   ansList:
   - {fileID: 7407818778945672762, guid: ea4b74b3271915940a2beb1aa08c3c68, type: 3}
-  - {fileID: 7407818778945672762, guid: cbd0f168645bc8c4c901699a6c968d80, type: 3}
   questionList:
   - Test Question. Ans is Blue~Test1
   - Test Question. Ans is Yellow~Test2
