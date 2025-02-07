@@ -20,6 +20,9 @@ public class QuizList : MonoBehaviour
     // Question list
     public string[] questionList;
 
+    // Option number list
+    public string[] opNumList;
+
     // Correct ans list
     public string[] corAnsList;
 

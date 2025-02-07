@@ -50,4 +50,10 @@ public class SocketSending : MonoBehaviour
     {
         calibrateQuiz.PublishCurrentOp("3");
     }
+
+    // When option 4 is selected, broadcast to CalibrateQuiz
+    public void PublishCurrentOption4()
+    {
+        calibrateQuiz.PublishCurrentOp("4");
+    }
 }

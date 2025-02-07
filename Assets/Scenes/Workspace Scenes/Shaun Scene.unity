@@ -9171,17 +9171,25 @@ MonoBehaviour:
   - {fileID: 7872609090535916945, guid: 468decc9a0b35f541aca039cc9a8cf54, type: 3}
   - {fileID: 1671517289519893158, guid: 5e206b2b47bd3184584f2abbce713896, type: 3}
   - {fileID: 819766771025329688, guid: 1e29bce789905164ea4c7e48cb1188ea, type: 3}
+  - {fileID: 819766771025329688, guid: 026db51d890239a4691d35ab16652474, type: 3}
   ansList:
   - {fileID: 7407818778945672762, guid: ea4b74b3271915940a2beb1aa08c3c68, type: 3}
   questionList:
   - Test Question. Ans is Blue~Test1
   - Test Question. Ans is Yellow~Test2
+  - Test Question. Ans is Red~Test3
+  opNumList:
+  - 2~Test1
+  - 4~Test2
+  - 3~Test3
   corAnsList:
   - 1~Test1
   - 3~Test2
+  - 2~Test3
   explanationList:
   - Ans was blue lol~Test1
   - Ans was yellow lol~Test2
+  - Ans was red lol~Test3
 --- !u!4 &1599897353
 Transform:
   m_ObjectHideFlags: 0

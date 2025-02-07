@@ -70,6 +70,8 @@ public class CalibrateQuiz : MonoBehaviour
     // Quiz question variables
     // Question text
     string randomQtext;
+    // Option number text
+    string randomQopNum;
     // Question correct ans
     string randomQcorAns;
     // Question explanation
@@ -248,11 +250,33 @@ public class CalibrateQuiz : MonoBehaviour
 
         int corAns = int.Parse(randomQcorAns);
 
+        // Only activate the necessary option number
+        // If option number is 2
+        if (randomQopNum == "2")
+        {
+            // Disable last 2 options
+            spawnedPoint[0].transform.Find("Option3Spawn").gameObject.SetActive(false);
+            spawnedPoint[0].transform.Find("Option4Spawn").gameObject.SetActive(false);
+        }
+        // If option number is 3
+        else if (randomQopNum == "3")
+        {
+            // Disable last option, enable 3rd option
+            spawnedPoint[0].transform.Find("Option3Spawn").gameObject.SetActive(true);
+            spawnedPoint[0].transform.Find("Option4Spawn").gameObject.SetActive(false);
+        }
+        else
+        {
+            // Enable all options
+            spawnedPoint[0].transform.Find("Option3Spawn").gameObject.SetActive(true);
+            spawnedPoint[0].transform.Find("Option4Spawn").gameObject.SetActive(true);
+        }
+
         // Handles all the objects being spawned
         for (int i = 0; i < optionObjects.Count; i++)
         {
             // Initialize spawn point
-            Vector3 optionSpawnPoint;
+            Vector3 optionSpawnPoint = Vector3.zero;
             // Set first spawn
             if (i == 0)
             {
@@ -267,12 +291,19 @@ public class CalibrateQuiz : MonoBehaviour
                 // Find object spawn point
                 optionSpawnPoint = spawnedPoint[0].transform.Find("Option2Spawn").transform.position;
             }
-            // Set last spawn
-            else
+            // Set third spawn
+            else if (i == 2)
             {
                 Debug.Log("Option 3 set");
                 // Find object spawn point
                 optionSpawnPoint = spawnedPoint[0].transform.Find("Option3Spawn").transform.position;
+            }
+            // Set fourth spawn
+            else if (i == 3)
+            {
+                Debug.Log("Option 4 set");
+                // Find object spawn point
+                optionSpawnPoint = spawnedPoint[0].transform.Find("Option4Spawn").transform.position;
             }
             // Spawn option object at point
             GameObject optObj = Instantiate(optionObjects[i], optionSpawnPoint, Quaternion.identity);
@@ -299,6 +330,24 @@ public class CalibrateQuiz : MonoBehaviour
         randomQtext = randomQList[0].ToString();
         Debug.Log("Question text obtained!");
 
+        // Check thru the Option Number List
+        var onList = quizList.opNumList;
+        for (int i = 0; i < onList.Length; i++)
+        {
+            // Split each corAns obj from quiz list
+            var splitOpNum = onList[i].Split('~');
+            var splitOpNumID = splitOpNum[1].ToString();
+            // Retrieve ID of this obj and compare to current question ID
+            if (splitOpNumID == randomQID)
+            {
+                // Retrieve the OPTION NUMBER
+                randomQopNum = splitOpNum[0];
+
+                Debug.Log("Option number obtained!");
+                // After finding, end loop
+                break;
+            }
+        }
         // Check thru the Correct Ans List
         var caList = quizList.corAnsList;
         for (int i = 0; i < caList.Length; i++)
@@ -352,8 +401,9 @@ public class CalibrateQuiz : MonoBehaviour
 
                     // Increment count
                     countOps++;
+                    Debug.Log("Option Obj: "+countOps);
                     // If all 3 option objects are received
-                    if (countOps == 3)
+                    if (countOps.ToString() == randomQopNum)
                     {
                         Debug.Log("All options obtained!");
                         // After finding, end loop
