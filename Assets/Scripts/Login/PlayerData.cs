@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun & Jonathan Low Jerome Enting
  * Date: 04/02/2025
  * Desc:
  * - Construct to contain player database details

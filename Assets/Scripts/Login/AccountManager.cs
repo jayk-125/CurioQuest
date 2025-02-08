@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun & Jonathan Low Jerome Enting
  * Date: 04/02/2025
  * Desc:
  * - Store player database details
@@ -95,9 +95,73 @@ public class AccountManager : MonoBehaviour
                                     .Child(currentUID);
                                 // Alter stored highscore
                                 var updateValues = new Dictionary<string, object>();
-                                updateValues.Add("highScore", currentHighscore);
+                                updateValues.Add("highscore", currentHighscore);
                                 playerReference.UpdateChildrenAsync(updateValues);
                                 Debug.Log("Uploaded highscore!");
+                            }
+                        }
+                    }
+                });
+        }
+        else
+        {
+            Debug.Log("The current score is less than the stored highscore!");
+        }
+
+    }
+
+    // Change the player username
+    public void ChangePlayerUsername(string newUsername)
+    {
+        // If current username is different from new username
+        if (currentName != newUsername)
+        {
+            // Change accManager stored highscore
+            currentName = newUsername;
+
+            // Find the account database with uid
+            FirebaseDatabase.DefaultInstance
+                .GetReference("players")
+                .GetValueAsync()
+                .ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Sorry, there was an error! ERROR: " + task.Exception);
+                        return; // exit from attempt
+                    }
+
+                    if (!task.IsCompletedSuccessfully)
+                    {
+                        Debug.Log("Unable to create user!");
+                        return;
+                    }
+
+                    // start retrieving values and printout
+                    DataSnapshot snapshot = task.Result;
+                    if (snapshot.Exists)
+                    {
+                        // Look thru each existing Json for the acc
+                        foreach (DataSnapshot ds in snapshot.Children)
+                        {
+                            // Set account path reference
+                            PlayerData accPath = JsonUtility.FromJson<PlayerData>(ds.GetRawJsonValue());
+                            // If current UID is the same as the UID being checked
+                            if (currentUID == accPath.uid)
+                            {
+                                Debug.Log("Data found!");
+                                // Insert post account login here:
+                                // Get path referencing found existing name
+                                var playerReference = FirebaseDatabase
+                                    .DefaultInstance
+                                    .RootReference
+                                    .Child("players")
+                                    .Child(currentUID);
+                                // Alter stored highscore
+                                var updateValues = new Dictionary<string, object>();
+                                updateValues.Add("username", newUsername);
+                                playerReference.UpdateChildrenAsync(updateValues);
+                                Debug.Log("Uploaded username!");
                             }
                         }
                     }

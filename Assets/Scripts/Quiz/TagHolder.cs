@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun + Jaykin Lee
+/* Author: Loh Shau Ern Shaun & Jaykin Lee
  * Date: 04/02/2025
  * Desc:
  * - Holds the assigned IDs for an object

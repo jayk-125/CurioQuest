@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun & Arwen Josephine Loh
  * Date: 28/01/2025
  * Desc:
  * - When socket is connected, allow answer checking

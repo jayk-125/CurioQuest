@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun, Arwen Josephine Loh, Jaykin Lee & Jonathan Low Jerome Enting
  * Date: 24/01/2025
  * Desc:
  * - Handles quiz UI pages
@@ -109,7 +109,7 @@ public class CalibrateQuiz : MonoBehaviour
     private TextMeshProUGUI currentScoreText;
     // Reference to highscore text
     [SerializeField]
-    private TextMeshProUGUI highscoreText; // Currently just a placeholder
+    private TextMeshProUGUI highscoreText;
 
     // Start is called before the first frame update
     void Awake()
@@ -316,20 +316,31 @@ public class CalibrateQuiz : MonoBehaviour
     public void GetQuestion()
     {
         Debug.Log("Getting a random question");
-
-        var qList = quizList.questionList;
-        // Get a random question number from quiz list
-        int randomQNum = Random.Range(0, qList.Length);
-        // Split the question
-        var randomQList = qList[randomQNum].Split('~');
-        // Retrieve the ID from Question
-        string randomQID = randomQList[1].ToString();
+        var idList = quizList.validIDList;
+        // Get a random question ID from quiz list
+        int randomNum = Random.Range(0, idList.Length);
+        string randomQID = idList[randomNum];
         Debug.Log("ID obtained!");
 
-        // Retrieve the QUESTION
-        randomQtext = randomQList[0].ToString();
-        Debug.Log("Question text obtained!");
+        
+        // Check thru the Question text List
+        var qList = quizList.questionList;
+        for (int i = 0; i < qList.Length; i++)
+        {
+            // Split each question obj from quiz list
+            var splitQtext = qList[i].Split('~');
+            var splitQID = splitQtext[1].ToString();
+            // Retrieve ID of this obj and compare to current question ID
+            if (splitQID == randomQID)
+            {
+                // Retrieve the OPTION NUMBER
+                randomQtext = splitQtext[0];
 
+                Debug.Log("Question text obtained!");
+                // After finding, end loop
+                break;
+            }
+        }
         // Check thru the Option Number List
         var onList = quizList.opNumList;
         for (int i = 0; i < onList.Length; i++)
@@ -534,8 +545,22 @@ public class CalibrateQuiz : MonoBehaviour
         spawnedPoint.Clear();
         Debug.Log("Cleared!");
 
+        // Get player score
+        int currentScore = scoreHandler.score;
         // Set the current score text as current score
-        currentScoreText.text = "Current score:\n" + scoreHandler.score.ToString();
+        currentScoreText.text = "Current score:\n" + currentScore.ToString();
+
+        // Set the highscore
+        // Get reference to Account Manager obj
+        AccountManager accManager = GameObject.Find("/AccountManager").GetComponent<AccountManager>();
+        // When acc manager is found
+        if (accManager != null)
+        {
+            // Check highscore
+            accManager.CheckPlayerHighscore(currentScore);
+            // Set the highscore text as stored highscore
+            highscoreText.text = "Highscore: \n" + accManager.storedHighscore;
+        }
     }
 
     // Restart button

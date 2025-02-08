@@ -11,6 +11,9 @@ using TMPro;
 public class QuizList : MonoBehaviour
 {
     // Reference any and all game objects to be used fore the quiz here:
+    // Valid question ID list
+    public string[] validIDList;
+    
     // Option object list
     public GameObject[] optionsList;
 

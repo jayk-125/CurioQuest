@@ -1,4 +1,4 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun & Jonathan Low Jerome Enting
  * Date: 04/02/2025
  * Desc:
  * - Handle player registering account
@@ -95,42 +95,46 @@ public class CQ_Database : MonoBehaviour
         // Get email and password from input fields
         string email = emailS.text.Trim();
         string password = passwordS.text.Trim();
-        Debug.LogFormat("input fields obtained {0}, {1}",email, password);
+        string username = usernameS.text.Trim();
+
         // pass user info to the firebase project
         // attempts to create a new user / check if alr exists
-        dbAuthRef
-            .CreateUserWithEmailAndPasswordAsync(email, password)
-            .ContinueWithOnMainThread(task =>
-            {
-                // perform task handling
-                if (task.IsFaulted)
+        if ((username.Length > 3) && (username.Length < 25))
+        {
+            dbAuthRef
+                .CreateUserWithEmailAndPasswordAsync(email, password)
+                .ContinueWithOnMainThread(task =>
                 {
-                    Debug.LogError("Sorry, there was an error! ERROR: " + task.Exception);
-                    return; // exit from attempt
-                }
+                    // perform task handling
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Sorry, there was an error! ERROR: " + task.Exception);
+                        return; // exit from attempt
+                    }
 
-                if (!task.IsCompletedSuccessfully)
-                {
-                    Debug.Log("Unable to create user!");
-                    return;
-                }
+                    if (!task.IsCompletedSuccessfully)
+                    {
+                        Debug.Log("Unable to create user!");
+                        return;
+                    }
 
-                // Insert post-sign up actions here
-                // Get reference of authentication acc
-                Firebase.Auth.AuthResult result = task.Result;
-                // Make variable that calls acc user id
-                var playerUID = result.User.UserId;
-                Debug.LogFormat("Welcome to curio quest, {0}!", playerUID);
+                    // Insert post-sign up actions here
+                    // Get reference of authentication acc
+                    Firebase.Auth.AuthResult result = task.Result;
+                    // Make variable that calls acc user id
+                    var playerUID = result.User.UserId;
+                    Debug.LogFormat("Welcome to curio quest, {0}!", playerUID);
 
-                // Get display name variable
-                string displayName = usernameS.text.Trim();
-                // Create database based on email provided
-                CreatePlayerDatabase(playerUID, displayName,0);
+                    // Get display name variable
+                    string displayName = usernameS.text.Trim();
+                    // Create database based on email provided
+                    CreatePlayerDatabase(playerUID, displayName, 0);
 
-                // Switch to login canvas after creating account
-                signupCanvas.SetActive(false);
-                loginCanvas.SetActive(true);
-            });
+                    // Switch to login canvas after creating account
+                    signupCanvas.SetActive(false);
+                    loginCanvas.SetActive(true);
+                });
+        }
     }
 
     // When user is created, create corresponding account database 
@@ -196,9 +200,6 @@ public class CQ_Database : MonoBehaviour
 
                 // Find entered player database based on email
                 FindPlayerDatabase(playerUID);
-
-                // Go to the main scene page
-                //EnterMainScene();
             });
     }
 
@@ -262,6 +263,9 @@ public class CQ_Database : MonoBehaviour
                         }
                     }
                 }
+
+                // Go to the main scene page
+                EnterMainScene();
             });
     }
 
@@ -306,10 +310,8 @@ public class CQ_Database : MonoBehaviour
     // When called, change scene to the main scene
     void EnterMainScene()
     {
-        // Set scene variable 
-        Scene scene = SceneManager.GetActiveScene();
-        // Open the menu scene
-        SceneManager.LoadScene(1);
+        // Load the menu scene
+        SceneManager.LoadScene("MenuScene");
     }
 
     // Clear all the input fields
