@@ -19,20 +19,11 @@ public class SetProfileDetails : MonoBehaviour
     // Reference to change username input field
     public TMP_InputField nameChangeField;
 
-    // Reference to player profile page
-    public GameObject profilePage;
-    // Reference to change username page
-    public GameObject changeNamePage;
-
     AccountManager accManager;
 
     // When scene is entered
     void Awake()
     {
-        // Show profile page only
-        profilePage.SetActive(true);
-        changeNamePage.SetActive(false);
-
         // Get reference to Account Manager obj
         accManager = GameObject.Find("/AccountManager").GetComponent<AccountManager>();
         // When acc manager is found
@@ -61,10 +52,6 @@ public class SetProfileDetails : MonoBehaviour
 
         // Clear the field
         ClearNameChangeField();
-
-        // Show profile page only
-        profilePage.SetActive(true);
-        changeNamePage.SetActive(false);
     }
 
     // Clear the input field
