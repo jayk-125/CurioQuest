@@ -1,7 +1,7 @@
-/* Author: Loh Shau Ern Shaun
+/* Author: Loh Shau Ern Shaun & Arwen Josephine Loh
  * Date: 08/02/2025
  * Desc:
- * - Change between scenes with this code
+ * - Change between scenes and panels with this code 
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 
 public class RedirectScene : MonoBehaviour
 {
+    public GameObject leaderboardPanel;
+    public GameObject profilePanel;
+    public GameObject mainMenuPanel;
     // Load the learning scene
     public void GoLearnScene()
     {
@@ -25,14 +28,14 @@ public class RedirectScene : MonoBehaviour
     }
 
     // Load the profile scene
-    public void GoProfileScene()
+    public void SetProfilePanelActive()
     {
         Debug.Log("Going to profile scene!");
         SceneManager.LoadScene("ProfileScene");
     }
 
     // Load the learning scene
-    public void GoLeaderboardScene()
+    public void SetLeaderboardPanelActive()
     {
         Debug.Log("Going to leaderboard scene!");
         SceneManager.LoadScene("LeaderboardScene");
@@ -46,7 +49,7 @@ public class RedirectScene : MonoBehaviour
     }
 
     // Return to main menu scene
-    public void GoMainMenuScene()
+    public void ReturnToMainMenuPanel()
     {
         Debug.Log("Going to main menu scene!");
         SceneManager.LoadScene("MenuScene");
