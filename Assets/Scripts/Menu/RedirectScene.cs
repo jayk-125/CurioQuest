@@ -27,31 +27,44 @@ public class RedirectScene : MonoBehaviour
         SceneManager.LoadScene("QuizScene");
     }
 
-    // Load the profile scene
+
+    // Show the profile panel
     public void SetProfilePanelActive()
     {
-        Debug.Log("Going to profile scene!");
-        SceneManager.LoadScene("ProfileScene");
+        Debug.Log("Showing profile panel!");
+        ActivatePanel(profilePanel);
     }
 
-    // Load the learning scene
+    // Show the leaderboard panel
     public void SetLeaderboardPanelActive()
     {
-        Debug.Log("Going to leaderboard scene!");
-        SceneManager.LoadScene("LeaderboardScene");
+        Debug.Log("Showing leaderboard panel!");
+        ActivatePanel(leaderboardPanel);
     }
 
-    // Return to the login scene
+    // Return to the main menu panel
+    public void ReturnToMainMenuPanel()
+    {
+        Debug.Log("Returning to main menu!");
+        ActivatePanel(mainMenuPanel);
+    }
+
+    // Logout and go back to login scene
     public void LogOut()
     {
         Debug.Log("Logging Out!");
         SceneManager.LoadScene("LoginScene");
     }
 
-    // Return to main menu scene
-    public void ReturnToMainMenuPanel()
+    // function to switch panels
+    private void ActivatePanel(GameObject panelToActivate)
     {
-        Debug.Log("Going to main menu scene!");
-        SceneManager.LoadScene("MenuScene");
+        // Deactivate all panels
+        leaderboardPanel.SetActive(false);
+        profilePanel.SetActive(false);
+        mainMenuPanel.SetActive(false);
+
+        // Activate the selected panel
+        panelToActivate.SetActive(true);
     }
 }

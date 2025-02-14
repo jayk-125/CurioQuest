@@ -23,7 +23,7 @@ public class EnterText : MonoBehaviour
         if (accManager != null)
         {
             // Set welcome text
-            welcomeText.text = "Welcome, " + accManager.currentName + "!";
+            welcomeText.text = "Hello " + accManager.currentName + "!";
         }
     }
 }
