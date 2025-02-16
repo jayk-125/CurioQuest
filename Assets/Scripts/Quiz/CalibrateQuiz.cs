@@ -320,7 +320,7 @@ public class CalibrateQuiz : MonoBehaviour
         // Get a random question ID from quiz list
         int randomNum = Random.Range(0, idList.Length);
         string randomQID = idList[randomNum];
-        Debug.Log("ID obtained!");
+        Debug.Log("ID obtained! ID is " + randomQID);
 
         
         // Check thru the Question text List

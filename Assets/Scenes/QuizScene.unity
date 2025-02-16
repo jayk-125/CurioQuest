@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2598,9 +2598,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Quiz to test scoring system and such. \n\nAfter starting, we will scan
-    your surroundings with your device's camera for planes to select a starting point.\n\nThis
-    starting point will allow us to create interactable objects for the quiz."
+  m_text: "Oh no!! JJ's gotten lost in the forest filled with dangerous Oviraptors!
+    \n\nHelp him escape by selecting\n the correct answer to these questions!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2635,7 +2634,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4358,6 +4357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846ca26c6296bed40a91f5615bff8d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardPanel: {fileID: 0}
+  profilePanel: {fileID: 0}
+  mainMenuPanel: {fileID: 0}
 --- !u!1 &827126346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6858,7 +6860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select somewhere on the scanned plane to set the quiz spawn point.
+  m_text: "Tap anywhere in the scanned area\n to try and locate JJ!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9182,9 +9184,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   validIDList:
-  - Test1
-  - Test2
-  - Test3
+  - T1
+  - T2
+  - T3
+  - B1
+  - B2
+  - B3
+  - O1
+  - O2
+  - O3
+  - G1
   optionsList:
   - {fileID: 7872609090535916945, guid: 468decc9a0b35f541aca039cc9a8cf54, type: 3}
   - {fileID: 1671517289519893158, guid: 5e206b2b47bd3184584f2abbce713896, type: 3}
@@ -9196,7 +9205,7 @@ MonoBehaviour:
   - Test Question. Ans is Blue~Test1
   - Test Question. Ans is Yellow~Test2
   - Test Question. Ans is Red~Test3
-  - 
+  - the~line
   - The arms of a Tyrannosaurus were very weak?~T1
   - Which period was the Tyrannosaurus in?~T2
   - What was the diet of the Tyrannosaurus?~T3
@@ -9211,7 +9220,7 @@ MonoBehaviour:
   - 2~Test1
   - 4~Test2
   - 3~Test3
-  - 
+  - the~line
   - 2~T1
   - 4~T2
   - 4~T3
@@ -9226,7 +9235,7 @@ MonoBehaviour:
   - 1~Test1
   - 3~Test2
   - 2~Test3
-  - 
+  - the~line
   - 2~T1
   - 3~T2
   - 4~T3
@@ -9241,7 +9250,7 @@ MonoBehaviour:
   - Ans was blue lol~Test1
   - Ans was yellow lol~Test2
   - Ans was red lol~Test3
-  - 
+  - the~line
   - TRex arms may look small, but are capable of handling heavy stress, which suggested
     it could have been used to hold struggling prey or help them get up from prone
     positions.~T1
