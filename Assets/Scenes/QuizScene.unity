@@ -4360,6 +4360,7 @@ MonoBehaviour:
   leaderboardPanel: {fileID: 0}
   profilePanel: {fileID: 0}
   mainMenuPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
 --- !u!1 &827126346
 GameObject:
   m_ObjectHideFlags: 0
@@ -9199,8 +9200,26 @@ MonoBehaviour:
   - {fileID: 1671517289519893158, guid: 5e206b2b47bd3184584f2abbce713896, type: 3}
   - {fileID: 819766771025329688, guid: 1e29bce789905164ea4c7e48cb1188ea, type: 3}
   - {fileID: 819766771025329688, guid: 026db51d890239a4691d35ab16652474, type: 3}
+  - {fileID: 505754912431485050, guid: fdb9dae1db7724f489721abbd4c15cc2, type: 3}
+  - {fileID: 3602338878262252015, guid: d592ca3a660e1444b8670391a75a5340, type: 3}
+  - {fileID: 4420104165832863533, guid: 06ba601cb186bc24284b3f6085b92df0, type: 3}
+  - {fileID: 7634156019859473004, guid: ce92ce52bde8b1b43bcd7dd08320c60d, type: 3}
+  - {fileID: 822858627016834757, guid: 54c8b13cf2e6efb4fb39402828b49862, type: 3}
+  - {fileID: 8216427119663276191, guid: 1f3f2f71eda46b2408df3516e9deae43, type: 3}
+  - {fileID: 2484771354141532276, guid: 7d0be7b44511910438b714d799901635, type: 3}
+  - {fileID: 8484607228395006128, guid: 6781556fad84890499d3f2881c2b32e8, type: 3}
+  - {fileID: 4938485899029361223, guid: bab3b43679c085f41b52ee0ca9f3db29, type: 3}
+  - {fileID: 5309788196425232216, guid: 632b069814894694e8757400f74b71d2, type: 3}
+  - {fileID: 4449022347206382557, guid: 308d93dcdc495b94ca15ea3d225736be, type: 3}
+  - {fileID: 4810828489769465922, guid: 39a01441a7a927e48a1f587073fd7066, type: 3}
+  - {fileID: 2571717182824233273, guid: 013126221171998458c5243c324b8255, type: 3}
+  - {fileID: 5743792558041527162, guid: da37994b4083a054b841ddc183bb4cb0, type: 3}
+  - {fileID: 6419603246192633127, guid: 0b79839d56bd56c4985226422df91aec, type: 3}
+  - {fileID: 2607988645053246215, guid: ad043a5772200be43a777e32121af9bd, type: 3}
+  - {fileID: 8878253958904930833, guid: 0782263d438602b47a169220a2c799e4, type: 3}
+  - {fileID: 1599596339048209440, guid: a4b3ec348e50d594b888522dc7244f64, type: 3}
   ansList:
-  - {fileID: 7407818778945672762, guid: ea4b74b3271915940a2beb1aa08c3c68, type: 3}
+  - {fileID: 4809833933368554665, guid: 61656c4f47c0f7b40b046f2f019357d3, type: 3}
   questionList:
   - Test Question. Ans is Blue~Test1
   - Test Question. Ans is Yellow~Test2
