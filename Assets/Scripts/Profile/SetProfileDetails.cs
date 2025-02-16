@@ -32,7 +32,7 @@ public class SetProfileDetails : MonoBehaviour
             // Set username text
             usernameText.text = "Username:\n " + accManager.currentName;
             // Set highscore text
-            highscoreText.text = "Highscore:\n " + accManager.storedHighscore;
+            highscoreText.text = "High Score:\n " + accManager.storedHighscore;
         }
     }
 

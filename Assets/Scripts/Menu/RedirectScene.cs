@@ -13,6 +13,7 @@ public class RedirectScene : MonoBehaviour
     public GameObject leaderboardPanel;
     public GameObject profilePanel;
     public GameObject mainMenuPanel;
+    public GameObject settingsPanel;
     // Load the learning scene
     public void GoLearnScene()
     {
@@ -40,6 +41,11 @@ public class RedirectScene : MonoBehaviour
     {
         Debug.Log("Showing leaderboard panel!");
         ActivatePanel(leaderboardPanel);
+    }
+
+    public void SetSettingsPanelActive()
+    {
+        ActivatePanel(settingsPanel);
     }
 
     // Return to the main menu panel
