@@ -19,7 +19,7 @@ public class LookAtPlayer : MonoBehaviour
     // Late Update is called once per frame, AFTER Update function
     void LateUpdate()
     {
-        Transform cam = GameObject.Find("/NestedParentArmature_Unpack/MainCamera").transform;
+        Transform cam = GameObject.Find("SimulationCamera").transform;
         // Face canvas object towards the player
         transform.LookAt(cam);
     }
