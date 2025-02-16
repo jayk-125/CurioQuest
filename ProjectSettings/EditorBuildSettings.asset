@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuizScene.unity
     guid: a801426e9a680ed4484a9a59806b66a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProfileScene.unity
     guid: 92891a2c133bb5b4eb86b5b0f92bf3a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LeaderboardScene.unity
     guid: 175a9765c196c3640a837fbafb78d892
   m_configObjects:

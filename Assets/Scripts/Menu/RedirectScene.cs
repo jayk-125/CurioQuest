@@ -14,14 +14,26 @@ public class RedirectScene : MonoBehaviour
     public GameObject profilePanel;
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
-    public GameObject learnPanel;
-    public GameObject trexPanel;
-    public GameObject ovirPanel;
-    public GameObject brachioPanel;
+
+    // Go to the quiz scene
     public void GoQuizScene()
     {
         Debug.Log("Going to quiz scene!");
         SceneManager.LoadScene("QuizScene");
+    }
+
+    // Go to the learn scene
+    public void GoLearnScene()
+    {
+        Debug.Log("Going to learn scene!");
+        SceneManager.LoadScene("LearnScene");
+    }
+
+    // Return to the main scene
+    public void GoMainScene()
+    {
+        Debug.Log("Going to main scene!");
+        SceneManager.LoadScene("MenuScene");
     }
 
 
@@ -46,27 +58,6 @@ public class RedirectScene : MonoBehaviour
         ActivatePanel(settingsPanel);
     }
 
-    // Show the learn panel
-    public void SetLearnPanelActive()
-    {
-        Debug.Log("Showing learn panel!");
-        ActivatePanel(learnPanel);
-    }
-
-    // Show T-rex panel
-    public void SetTrexPanelActive()
-    {
-        ActivatePanel(settingsPanel);
-    }
-    public void SetOvirPanelActive()
-    {
-        ActivatePanel(ovirPanel);
-    }
-    public void SetBrachioPanelActive()
-    {
-        ActivatePanel(brachioPanel);
-    }
-
     // Return to the main menu panel
     public void ReturnToMainMenuPanel()
     {
@@ -88,6 +79,7 @@ public class RedirectScene : MonoBehaviour
         leaderboardPanel.SetActive(false);
         profilePanel.SetActive(false);
         mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
 
         // Activate the selected panel
         panelToActivate.SetActive(true);

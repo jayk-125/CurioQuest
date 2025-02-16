@@ -8,6 +8,7 @@
  */
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Firebase;
 using Firebase.Database;
@@ -38,7 +39,7 @@ public class LeaderboardDetails : MonoBehaviour
 
                 if (!task.IsCompletedSuccessfully)
                 {
-                    Debug.Log("Unable to create user!");
+                    Debug.Log("Unable to retrieve data!");
                     return;
                 }
 
@@ -56,13 +57,14 @@ public class LeaderboardDetails : MonoBehaviour
                         var json = ds.GetRawJsonValue();
 
                         // Store json in list obj
-                        PlayerData accPath = JsonUtility.FromJson<PlayerData>(json);
-                        playerDataList.Add(accPath);
+                        PlayerData player = JsonUtility.FromJson<PlayerData>(json);
+                        playerDataList.Add(player);
                     }
                 }
 
-                // Set list in descending order
-                playerDataList.Reverse();
+                // Sort by highscore in descending order
+                playerDataList = playerDataList.OrderByDescending(player => player.highscore).ToList();
+
                 // List to fill in top 5 places
                 for (int i = 0; i < 5; i++)
                 {

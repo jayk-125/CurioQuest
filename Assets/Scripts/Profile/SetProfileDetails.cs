@@ -19,6 +19,9 @@ public class SetProfileDetails : MonoBehaviour
     // Reference to change username input field
     public TMP_InputField nameChangeField;
 
+    // Reference to confirmation ui
+    public GameObject confirmObject;
+
     AccountManager accManager;
 
     // When scene is entered
@@ -34,6 +37,9 @@ public class SetProfileDetails : MonoBehaviour
             // Set highscore text
             highscoreText.text = "High Score:\n " + accManager.storedHighscore;
         }
+
+        // Hide confirm ui
+        confirmObject.SetActive(false);
     }
 
     // Change the username based on provided input field
@@ -52,6 +58,9 @@ public class SetProfileDetails : MonoBehaviour
 
         // Clear the field
         ClearNameChangeField();
+
+        // Show confirm ui
+        confirmObject.SetActive(true);
     }
 
     // Clear the input field

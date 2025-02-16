@@ -17,6 +17,12 @@ public class EnterText : MonoBehaviour
     // When scene is entered
     void Awake()
     {
+        SetPlayerName();
+    }
+
+    // When called, reset the player's name
+    public void SetPlayerName()
+    {
         // Get reference to Account Manager obj
         AccountManager accManager = GameObject.Find("/AccountManager").GetComponent<AccountManager>();
         // When acc manager is found
