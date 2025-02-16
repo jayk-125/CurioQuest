@@ -14,14 +14,10 @@ public class RedirectScene : MonoBehaviour
     public GameObject profilePanel;
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
-    // Load the learning scene
-    public void GoLearnScene()
-    {
-        Debug.Log("Going to learn scene!");
-        //SceneManager.LoadScene("LearnScene");
-    }
-
-    // Load the learning scene
+    public GameObject learnPanel;
+    public GameObject trexPanel;
+    public GameObject ovirPanel;
+    public GameObject brachioPanel;
     public void GoQuizScene()
     {
         Debug.Log("Going to quiz scene!");
@@ -43,9 +39,32 @@ public class RedirectScene : MonoBehaviour
         ActivatePanel(leaderboardPanel);
     }
 
+    // Show the settings panel
     public void SetSettingsPanelActive()
     {
+        Debug.Log("Showing settings panel!");
         ActivatePanel(settingsPanel);
+    }
+
+    // Show the learn panel
+    public void SetLearnPanelActive()
+    {
+        Debug.Log("Showing learn panel!");
+        ActivatePanel(learnPanel);
+    }
+
+    // Show T-rex panel
+    public void SetTrexPanelActive()
+    {
+        ActivatePanel(settingsPanel);
+    }
+    public void SetOvirPanelActive()
+    {
+        ActivatePanel(ovirPanel);
+    }
+    public void SetBrachioPanelActive()
+    {
+        ActivatePanel(brachioPanel);
     }
 
     // Return to the main menu panel
