@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2757,6 +2757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846ca26c6296bed40a91f5615bff8d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardPanel: {fileID: 0}
+  profilePanel: {fileID: 0}
+  mainMenuPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
 --- !u!114 &1940300034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2785,8 +2789,6 @@ MonoBehaviour:
   usernameText: {fileID: 1303890819}
   highscoreText: {fileID: 919131275}
   nameChangeField: {fileID: 744336793}
-  profilePage: {fileID: 1846077217}
-  changeNamePage: {fileID: 1568560398}
 --- !u!1 &1941483706
 GameObject:
   m_ObjectHideFlags: 0
