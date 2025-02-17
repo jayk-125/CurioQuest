@@ -51,6 +51,36 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: calibrate
+    clip: {fileID: 8300000, guid: cbdc8659f6fa4fc4ba6a0568445b6d0f, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: despawn
+    clip: {fileID: 8300000, guid: d996b31c71dbd8543ac793d621b6b7f8, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: correct
+    clip: {fileID: 8300000, guid: d394d39659bfac0448da52eeea477e59, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: incorrect
+    clip: {fileID: 8300000, guid: 5dff0ca53a8c42f43b3241d372c4b28a, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: snap
+    clip: {fileID: 8300000, guid: babcaf0384055834eac501c29f0be51a, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: endquiz
+    clip: {fileID: 8300000, guid: 137de2d492d4fca47877445c769a89a6, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &6474842519938867900
 MonoBehaviour:
   m_ObjectHideFlags: 0

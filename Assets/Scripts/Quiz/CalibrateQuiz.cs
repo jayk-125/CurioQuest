@@ -43,6 +43,8 @@ public class CalibrateQuiz : MonoBehaviour
     // List containing spawned quiz board
     private List<GameObject> spawnedPoint = new List<GameObject>();
 
+    // Variable for SoundPrompt type
+    SoundPrompt soundPrompt;
 
     // Overall quiz timer
     // Boolean to start quiz timer
@@ -116,6 +118,9 @@ public class CalibrateQuiz : MonoBehaviour
     {
         // Reset the quiz
         Restart();
+
+        // Set reference to sound prompt
+        soundPrompt = FindObjectOfType<SoundPrompt>();
     }
 
     // When the game is started
@@ -190,6 +195,9 @@ public class CalibrateQuiz : MonoBehaviour
     // Switch to the quiz page
     public void SwitchToQuiz()
     {
+        // Play calibrate audio
+        soundPrompt.OnCalibrate();
+
         // Show quiz page
         quizPage.SetActive(true);
         // Hide other pages
@@ -448,6 +456,9 @@ public class CalibrateQuiz : MonoBehaviour
     // Allow button to submit
     public void AllowSubmit()
     {
+        // Play socket snap audio
+        soundPrompt.OnSocketSnap();
+
         buttonObj.interactable = true;
     }
     // Disallow button to submit
@@ -486,6 +497,9 @@ public class CalibrateQuiz : MonoBehaviour
         {
             // Actions for "Correct" here
             Debug.Log("Yippee, correct ans!");
+            // Play correct audio
+            soundPrompt.OnCorrect();
+            // Display explanation
             response = "CORRECT!\n";
             // Increase the score
             scoreHandler.OnCorrect();
@@ -495,6 +509,9 @@ public class CalibrateQuiz : MonoBehaviour
         {
             // Actions for "Incorrect" here
             Debug.Log("U suck bruh");
+            // Play incorrect audio
+            soundPrompt.OnIncorrect();
+            // Display explanation
             response = "INCORRECT...\n";
         }
         // Show Response + Explanation
@@ -522,6 +539,9 @@ public class CalibrateQuiz : MonoBehaviour
     // End the quiz
     public void EndQuiz()
     {
+        // Play end quiz audio
+        soundPrompt.OnQuizEnd();
+
         // Stop timer
         canTimerStart = false;
         

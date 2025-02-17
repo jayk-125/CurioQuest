@@ -1,3 +1,10 @@
+/* Author: Loh Shau Ern Shaun
+Date: 15/2/2025
+Desc:
+- Set the dinosaur to spawn
+- Spawn the dinosaur with the environment
+- Allow for despawning the enviornment
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +19,9 @@ public class LearnSpawner : MonoBehaviour
 
     // Reference to player camera
     public Camera mainCamera;
+
+    // Variable for SoundPrompt type
+    SoundPrompt soundPrompt;
 
     // List containing spawned dinosaurs
     private List<GameObject> spawnedDinos = new List<GameObject>();
@@ -31,6 +41,13 @@ public class LearnSpawner : MonoBehaviour
     private GameObject dinoSpawnable;
     // Variable to store dino to spawn
     private string dinoName;
+
+    // When object is spawned
+    void Awake()
+    {
+        // Set reference to sound prompt
+        soundPrompt = FindObjectOfType<SoundPrompt>();
+    }
 
     // Set the dino to spawn as TRex
     public void ChooseTRex()
@@ -82,7 +99,7 @@ public class LearnSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Spawning quiz board code
+        // Spawning dinosaurs code
         // Get raycast from camera to world
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         // If raycast exists
@@ -113,6 +130,9 @@ public class LearnSpawner : MonoBehaviour
     // Open the learn page
     public void SwitchToLearn()
     {
+        // Play calibrate audio
+        soundPrompt.OnCalibrate();
+
         // Show despawn page
         despawnPage.SetActive(true);
         // Hide other pages
@@ -124,6 +144,9 @@ public class LearnSpawner : MonoBehaviour
     // Players despawn the dinosaur and return to start 
     public void DespawnModels()
     {
+        // Play despawn audio
+        soundPrompt.OnDespawn();
+
         // Loop each stored dinosaur type
         foreach (GameObject dinoObj in spawnedDinos)
         {
